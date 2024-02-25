@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://da6mcrk6m7c24"]
+[gd_scene load_steps=7 format=3 uid="uid://da6mcrk6m7c24"]
 
 [ext_resource type="Script" path="res://main_gd.gd" id="1_ojrdw"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="2_tao7y"]
@@ -16,6 +16,11 @@ sky = SubResource("Sky_rjqfl")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="LabelSettings" id="LabelSettings_lku6m"]
+font_color = Color(1, 0, 0, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_ojrdw")
 
@@ -29,3 +34,10 @@ shadow_enabled = true
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.930296, 0.36681, 0, -0.36681, 0.930296, 0, 2.43469, 6.72604)
 script = ExtResource("2_tao7y")
+
+[node name="LabelElapsed" type="Label" parent="."]
+offset_right = 80.0
+offset_bottom = 23.0
+text = "0"
+label_settings = SubResource("LabelSettings_lku6m")
+horizontal_alignment = 2

@@ -8,6 +8,7 @@ var mesh_instance = null
 var mesh : Mesh
 var thread_generator : Thread
 var mutex: Mutex
+var elapsed = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,19 +25,14 @@ func _process(delta):
 	if mesh:
 		mesh_instance.mesh = mesh
 		mesh = null
+		$LabelElapsed.text = "GDScript: %4.2f ms" % elapsed
 	mutex.unlock()
 		
 func generator():
-	var started = Time.get_ticks_msec()
-	var fps = 0.0
 	var mg = MeshGeneratorScript.new()
 	
 	while true:
-		var current = Time.get_ticks_msec()
-		if current - started >= 1000:
-			print((current - started) / fps)
-			started = current
-			fps = 0
+		var started = Time.get_ticks_msec()
 		
 		var noise = FastNoiseLite.new()
 		noise.offset = noise_offset
@@ -46,8 +42,8 @@ func generator():
 		#var values = mc.fill_noise(size, noise)
 		var m = mg.generate_mesh(size, resolution, values)
 		
-		fps += 1.0
-		
+		var e = Time.get_ticks_msec() - started
 		mutex.lock()
 		mesh = m
+		elapsed = e		
 		mutex.unlock()

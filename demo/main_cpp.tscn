@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdsg66lkk6pml"]
+[gd_scene load_steps=7 format=3 uid="uid://bdsg66lkk6pml"]
 
 [ext_resource type="Script" path="res://main_cpp.gd" id="1_p3p2x"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="2_behxy"]
@@ -16,6 +16,11 @@ sky = SubResource("Sky_j7ed2")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="LabelSettings" id="LabelSettings_k4b02"]
+font_color = Color(1, 0, 0, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_p3p2x")
 
@@ -29,3 +34,10 @@ shadow_enabled = true
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.930418, 0.366501, 0, -0.366501, 0.930418, 0, 2.435, 6.726)
 script = ExtResource("2_behxy")
+
+[node name="LabelElapsed" type="Label" parent="."]
+offset_right = 80.0
+offset_bottom = 23.0
+text = "0"
+label_settings = SubResource("LabelSettings_k4b02")
+horizontal_alignment = 2
